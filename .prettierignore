@@ -1,0 +1,4 @@
+book/
+node_modules/
+*.yml
+*.yaml

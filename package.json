@@ -1,0 +1,21 @@
+{
+	"private": true,
+	"scripts": {
+		"format": "prettier --cache --write .",
+		"preinstall": "npx only-allow pnpm",
+		"prepare": "husky",
+		"update": "pnpm up && pnpm dedupe"
+	},
+	"license": "CC-BY-NC-SA-4.0",
+	"devDependencies": {
+		"@commitlint/cli": "^20.2.0",
+		"@commitlint/config-conventional": "^20.2.0",
+		"husky": "^9.1.7",
+		"lint-staged": "^16.2.7",
+		"only-allow": "^1.2.2",
+		"prettier": "^3.7.4"
+	},
+	"lint-staged": {
+		"*": "prettier --ignore-unknown --write"
+	}
+}

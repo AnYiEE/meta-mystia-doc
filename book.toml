@@ -1,0 +1,19 @@
+[book]
+title = "MetaMystia文档"
+description = "MetaMystia是为游戏《东方夜雀食堂》所开发的联机Mod，本网站它的文档站。"
+authors = ["AnYiEE", "MetaMikuAI"]
+language = "zh-CN"
+
+[output.html]
+additional-css = ["book.css"]
+mathjax-support = true
+preferred-dark-theme = "ayu"
+git-repository-url = "https://github.com/MetaMikuAI/MetaMystia"
+edit-url-template = "https://github.com/AnYiEE/meta-mystia-doc/edit/master/{path}"
+
+[output.html.search]
+enable = false
+
+[output.html.playground]
+line-numbers = true
+runnable = false

@@ -1,0 +1,8 @@
+{
+	"objectWrap": "collapse",
+	"quoteProps": "as-needed",
+	"singleQuote": true,
+	"tabWidth": 4,
+	"trailingComma": "es5",
+	"useTabs": true
+}
