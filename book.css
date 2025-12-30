@@ -2,3 +2,7 @@ body {
 	text-autospace: normal;
 	text-spacing-trim: normal;
 }
+
+.menu-title {
+	font-weight: 400;
+}
