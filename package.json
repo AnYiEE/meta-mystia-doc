@@ -2,6 +2,7 @@
 	"private": true,
 	"scripts": {
 		"build": "mdbook build",
+		"serve": "mdbook serve",
 		"format": "prettier --cache --write .",
 		"preinstall": "npx only-allow pnpm",
 		"prepare": "husky",
