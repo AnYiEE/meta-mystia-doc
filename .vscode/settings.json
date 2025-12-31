@@ -21,10 +21,12 @@
 		"autospace",
 		"commitlint",
 		"elasticlunr",
+		"izakaya",
 		"mathjax",
 		"mdbook",
 		"miku",
 		"mystia",
-		"Quan"
+		"quan",
+		"touhou"
 	]
 }
