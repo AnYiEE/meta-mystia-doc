@@ -15,3 +15,6 @@ edit-url-template = "https://github.com/AnYiEE/meta-mystia-doc/edit/master/{path
 [output.html.playground]
 line-numbers = true
 runnable = false
+
+[output.html.print]
+enable = false
