@@ -6,7 +6,7 @@ language = "zh-CN"
 
 [output.html]
 additional-css = ["book.css"]
-additional-js = ["assets/fzf.umd.js", "assets/elasticlunr.js"]
+additional-js = ["assets/js/search/fzf.umd.js", "assets/js/search/elasticlunr.js"]
 mathjax-support = true
 preferred-dark-theme = "ayu"
 git-repository-url = "https://github.com/MetaMikuAI/MetaMystia"
