@@ -1,3 +1,22 @@
+:root {
+	--mono-font:
+		'Source Code Pro', 'Consolas', 'JetBrains Mono', 'Menlo', 'Roboto Mono',
+		'Monaco', 'DejaVu Sans Mono', 'Liberation Mono', 'Courier New',
+		'Courier', 'SFMono-Regular', 'Source Han Mono SC',
+		'Noto Sans Mono CJK SC', 'Source Han Mono', 'Noto Sans Mono CJK',
+		monospace;
+}
+
+html {
+	font-family:
+		'-apple-system', 'BlinkMacSystemFont', 'Helvetica Neue',
+		'Source Sans Pro', 'Source Sans 3', 'DejaVu Sans', 'Liberation Sans',
+		'Helvetica', 'Roboto', 'Inter', 'Arial', 'SFProDisplay-Regular',
+		'PingFang SC', 'Source Han Sans SC', 'Noto Sans CJK SC',
+		'Source Han Sans', 'Noto Sans CJK', 'Microsoft YaHei',
+		'WenQuanYi Micro Hei', sans-serif;
+}
+
 body {
 	text-autospace: normal;
 	text-spacing-trim: normal;
