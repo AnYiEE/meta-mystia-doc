@@ -8,11 +8,11 @@
 
 ## 这是什么？
 
-《东方夜雀食堂》原生并不支持联机游玩。MetaMystia通过Mod的方式，为游戏引入了**多人联机能力**。
+《东方夜雀食堂》原生并不支持联机游玩。MetaMystia通过Mod的方式，为游戏引入了**双人联机能力**。
 
 您可以将它理解为：
 
-- 一个让夜雀食堂“支持多人”的功能扩展
+- 一个让夜雀食堂“支持双人”的功能扩展
 - 一个面向玩家与开发者持续演进的联机框架
 
 本项目由[**MetaMiku**](https://github.com/MetaMikuAI)与[**ShigureYuki**](https://github.com/ShigureYuki)共同开发和维护。
