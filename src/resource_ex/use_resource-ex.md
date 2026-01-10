@@ -15,6 +15,7 @@
 - 出没地点
 - 角色小人贴图
 - 自定义角色对话包内容
+- 自定义原料、食谱与食物
 
 配合对应的在线工具，即使不具备复杂开发环境，也可以较为轻松地制作扩展资源。
 
@@ -43,123 +44,17 @@
 
 ![示例图片4](./use_resource-ex.assets/531355180-682f7460-2d3d-4fb8-930b-647e2e70bac4.png)
 
+![示例图片5](./use_resource-ex.assets/image-20260110224843328.png)
+
+![示例图片6](./use_resource-ex.assets/image-20260110224858165.png)
+
 > （演示视频将在后续补充）
 
 ## 使用方法
 
-### 目录结构
+### 资源包构建
 
-在游戏根目录下创建`ResourceEx`目录，并为每个资源包建立独立文件夹。推荐的目录结构如下：
-
-```tree
-./ResourceEx/
-├── YourResName/
-│   ├── assets/
-│   │   ├── YourCharacter_0.png
-│   │   ├── YourCharacter_1.png
-│   │   ├── AnotherCharacter_0.png
-│   │   ├── AnotherCharacter_1.png
-│   │   └── ...
-│   └── ResourceEx.json
-├── YourResName2/
-│   ├── assets/
-│   │   ├── OneMoreCharacter_0.png
-│   │   ├── OneMoreCharacter_1.png
-│   │   └── ...
-│   └── ResourceEx.json
-└── ...
-```
-
-示例：
-
-```tree
-./ResourceEx/
-└── MetaMystia/
-    ├── assets/
-    │   ├── AkiMinoriko_0.png
-    │   ├── AkiSizuha_0.png
-    │   └── YakumoRan_0.png
-    └── ResourceEx.json
-```
-
-### ResourceEx.json配置文件
-
-`ResourceEx.json`是资源包的核心描述文件，用于声明角色信息与对话包内容。
-
-可以参考项目仓库中的[示例文件](https://github.com/MetaMikuAI/MetaMystia/blob/main/ResourceEx/MetaMystia/ResourceEx.json)：
-
-```
-./ResourceEx/MetaMystia/ResourceEx.json
-```
-
-当前支持两个顶级字段：
-
-- `characters`：角色定义
-- `dialogPackages`：对话包定义
-
-示例配置如下：
-
-```json
-{
-	"characters": [
-		{
-			"id": 10000,
-			"name": "秋静叶",
-			"label": "AkiSizuha",
-			"descriptions": ["红叶之神", "八百万之神", "掌管红叶程度的能力"],
-			"type": "Special",
-			"portraits": [{ "pid": 0, "path": "assets/AkiSizuha_0.png" }]
-		},
-		{
-			"id": 10001,
-			"name": "秋穰子",
-			"label": "AkiMinoriko",
-			"descriptions": ["丰收之神", "八百万之神", "掌管丰收程度的能力"],
-			"type": "Special",
-			"portraits": [{ "pid": 0, "path": "assets/AkiMinoriko_0.png" }]
-		},
-		{
-			"id": 10002,
-			"name": "八云蓝",
-			"label": "YakumoRan",
-			"descriptions": ["使役式神程度的能力", "", ""],
-			"type": "Special",
-			"portraits": [{ "pid": 0, "path": "assets/YakumoRan_0.png" }]
-		}
-	],
-	"dialogPackages": [
-		{
-			"name": "Test",
-			"dialogList": [
-				{
-					"characterId": 10000,
-					"characterType": "Special",
-					"pid": 0,
-					"position": "Left",
-					"text": "马上就要到秋天了呢。树叶啊，总让人觉得到了秋天才会变成红色，但其实从发芽的时候，它们就开始带上了美丽而虚幻的鲜红哦。只不过，叶子们在整个夏天都会把它隐藏起来……像这样害羞的落叶正在努力舞蹈着。"
-				},
-				{
-					"characterId": 10001,
-					"characterType": "Special",
-					"pid": 0,
-					"position": "Right",
-					"text": "秋穰子Testing..."
-				},
-				{
-					"characterId": 10002,
-					"characterType": "Special",
-					"pid": 0,
-					"position": "Left",
-					"text": "八云蓝Testing..."
-				}
-			]
-		}
-	]
-}
-```
-
-> [!TIP]
-> 推荐使用MetaMystia-ResourceEx-Editor自动生成`ResourceEx.json`文件。
+您无需手动管理目录结构、图片资源及`ResourceEx.json`文件，推荐直接使用[MetaMystia-ResourceEx-Editor](https://editor.meta-mystia.izakaya.cc)在线工具生成。
 
 ## 注意事项
 
@@ -167,11 +62,13 @@
     - 0–999：游戏原有资源
     - 1000–5999：DLC资源
     - 6000-8999: 为原游戏预留的扩展段
-    - 9000–10999：MetaMystia保留扩展段
-    - 11000及以上：创作者自定义资源
+    - 9000–11999：MetaMystia保留扩展段
+    - 12000及以上：创作者自定义资源
 
 > [!CAUTION]
-> 请避免使用0–10999范围内的ID。建议以每1000为一个独立创作区间，减少冲突。
+> 请避免使用0–11999范围内的ID。建议以每1000为一个独立创作区间，减少冲突。
+>
+> 也可以向MetaMystia开发团队申请专属ID段，以确保资源包的唯一性。
 
 ## 对话展示与触发
 

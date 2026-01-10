@@ -88,28 +88,28 @@ dnSpy插件，用于将Cpp2IL的分析结果整合进dnSpy视图，在查看Il2C
 
 3. 等待工具完成自动分析。完成后将生成多个输出目录，其中后续步骤主要使用：
     - `DummyDll/`
-    - `ida/`
 
 ### 导入dnSpy
 
 1. 将Il2CppDumper生成的`DummyDll/Assembly-CSharp.dll`导入dnSpy。
 
-2. 通过该文件，您可以较为直观地查看游戏逻辑中的类定义、字段名称以及方法签名，并结合注释信息定位其在原生代码中的虚拟地址。
+2. 通过该文件，您可以较为直观地查看游戏逻辑中的类定义、字段名称以及方法签名，并定位其在dll中的虚拟地址。
 
 ### 导入IDA Pro
 
-1. **备份**原始的`GameAssembly.dll`，以避免误操作造成文件损坏。
+1. 使用IDA Pro打开`GameAssembly.dll`，等待其完成初始自动分析（首次加载耗时可能较长）。
 
-2. 使用IDA Pro打开`GameAssembly.dll`，等待其完成初始自动分析（首次加载耗时可能较长）。
+2. 在IDA中点击`File -> Script file`，运行Il2CppDumper生成的`ida_with_struct_py3.py`脚本。
 
-3. 在IDA中点击`File -> Script file`，运行Il2CppDumper生成的`ida_with_struct_py3.py`脚本。
-
-4. 根据脚本提示，依次选择生成的`script.json`与`il2cpp.h`文件，等待符号与结构信息导入完成。
+3. 根据脚本提示，依次选择生成的`script.json`与`il2cpp.h`文件，耐心等待符号与结构信息导入完成。
 
     ![IDA运行脚本步骤](./getting_started.assets/image-20251231124728238.png)
 
-5. 导入完成后，关闭IDA并**保存数据库**。在保存对话框中，建议勾选`Collect`选项，以保留完整的分析信息。
+4. 导入完成后，关闭IDA并**保存数据库**。在保存对话框中，建议勾选`Collect`选项，以保留完整的分析信息。
 
     ![IDA保存对话框](./getting_started.assets/image-20251231125239242.png)
 
-6. 建议额外备份生成的`GameAssembly.dll.i64`数据库文件，以便在后续分析出现问题时快速恢复。
+5. 额外备份生成的`GameAssembly.dll.i64`数据库文件
+
+> [!TIP]
+> 动态调试时由于**ASLR**，模块的运行时基址（如 `0x7FFF25021000`）会与静态分析时的地址（如 `0x180001000`）不同，容易造成地址对照混乱。保留一份原始静态数据库可以避免IDA的Rebase影响静态分析。
