@@ -6,10 +6,10 @@
 
 Unity游戏大致可以分为两类：使用Mono运行时的传统Unity游戏，以及使用il2cpp技术构建的Unity游戏。
 
-在Mono模式下，Unity会将C#脚本编译为IL（中间语言），运行时由Mono虚拟机解释或JIT执行。这意味着游戏目录中通常会存在 `Assembly-CSharp.dll`、`mscorlib.dll` 等标准.NET程序集，开发者和Mod作者都可以直接反编译这些DLL来获取完整的C#源码结构。
+在Mono模式下，Unity会将C#脚本编译为IL（中间语言），运行时由Mono虚拟机解释或JIT执行。这意味着游戏目录中通常会存在`Assembly-CSharp.dll`、`mscorlib.dll`等标准.NET程序集，开发者和Mod作者都可以直接反编译这些DLL来获取完整的C#源码结构。
 
 而il2cpp则采用了完全不同的路线。
-在构建阶段，Unity会先将所有C#脚本转换为C++代码，再由平台原生编译器（如MSVC、Clang）编译为最终的机器码。在Windows平台上，这些代码最终会被打包进一个名为 `GameAssembly.dll` 的本地动态库中。此时，运行时已经不再存在.NET IL与Mono虚拟机，而是一个完全本地化的程序。
+在构建阶段，Unity会先将所有C#脚本转换为C++代码，再由平台原生编译器（如MSVC、Clang）编译为最终的机器码。在Windows平台上，这些代码最终会被打包进一个名为`GameAssembly.dll`的本地动态库中。此时，运行时已经不再存在.NET IL与Mono虚拟机，而是一个完全本地化的程序。
 
 这一步带来的直接后果是：
 **我们在逆向时不再面对C#或IL，而是面对高度优化过的C++机器码。**
@@ -52,7 +52,7 @@ Unity游戏大致可以分为两类：使用Mono运行时的传统Unity游戏，
 
 ## global-metadata与逆向难度的来源
 
-虽然il2cpp把C#编译成了本地代码，但Unity仍然需要在运行时保留一份类型系统和反射信息，因此这些数据被集中存放在一个名为 `global-metadata.dat` 的文件中。这个文件包含了类名、方法名、字段、参数类型、继承关系等关键信息，它相当于il2cpp世界里的“灵魂”。
+虽然il2cpp把C#编译成了本地代码，但Unity仍然需要在运行时保留一份类型系统和反射信息，因此这些数据被集中存放在一个名为`global-metadata.dat`的文件中。这个文件包含了类名、方法名、字段、参数类型、继承关系等关键信息，它相当于il2cpp世界里的“灵魂”。
 
 但与Mono不同的是，这份元数据与`GameAssembly.dll`中的函数和结构体并没有直接的符号关联。Unity在编译时会打乱、内联、重排大量函数，使得“哪个C++函数对应哪个C#方法”在二进制层面是不可见的。像Il2CppDumper这样的工具，正是通过解析`global-metadata.dat`并结合`GameAssembly.dll`的内部表结构，反推出这些映射关系，才能让我们在IDA中重新看到熟悉的类名和方法名。
 
