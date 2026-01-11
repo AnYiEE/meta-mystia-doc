@@ -1,6 +1,49 @@
 // @ts-check
 /// <reference types="./book.d.ts" />
 
+/**
+ * @param {string} url
+ * @param {'async' | 'defer'} [method]
+ * @param {boolean} [crossOrigin]
+ */
+function setScriptUrlTag(url, method, crossOrigin) {
+	/** @type {(element: HTMLElement) => void} */
+	const cleanup = (element) => {
+		if (document.head.contains(element)) {
+			element.remove();
+		}
+	};
+
+	return /** @type {Promise<void>} */ (
+		new Promise((resolve, reject) => {
+			const scriptElement = document.createElement('script');
+			scriptElement.src = url;
+
+			if (crossOrigin) {
+				scriptElement.crossOrigin = 'anonymous';
+			}
+			if (method === 'async') {
+				scriptElement.async = true;
+			}
+			if (method === 'defer') {
+				scriptElement.defer = true;
+			}
+
+			scriptElement.addEventListener('load', () => {
+				cleanup(scriptElement);
+				resolve();
+			});
+
+			scriptElement.addEventListener('error', (error) => {
+				cleanup(scriptElement);
+				reject(error);
+			});
+
+			document.head.append(scriptElement);
+		})
+	);
+}
+
 function waitDomReady() {
 	const checkReadyState = () => {
 		/** @type {DocumentReadyState[]} */
@@ -30,6 +73,42 @@ function waitDomReady() {
 		})
 	);
 }
+
+(() => {
+	if (location.hostname.endsWith('.izakaya.cc')) {
+		const ANALYTICS_BASE_URL = 'https://track.izakaya.cc';
+		const ANALYTICS_API_URL = `${ANALYTICS_BASE_URL}/api.php`;
+		const ANALYTICS_SCRIPT_URL = `${ANALYTICS_BASE_URL}/api.js`;
+		const ANALYTICS_SITE_ID = '12';
+
+		if (window._paq !== undefined) {
+			return;
+		}
+
+		/** @type {(...args: unknown[]) => void} */
+		const push = (...args) => {
+			window._paq ??= [];
+			window._paq.push(...args);
+		};
+
+		push(
+			['enableHeartBeatTimer'],
+			['enableLinkTracking'],
+			['setRequestMethod', 'GET'],
+			['setTrackerUrl', ANALYTICS_API_URL],
+			['setSiteId', ANALYTICS_SITE_ID]
+		);
+
+		setScriptUrlTag(ANALYTICS_SCRIPT_URL, 'async', true)
+			.then(() => {
+				push(['trackPageView']);
+				console.info('Analytics load succeeded.');
+			})
+			.catch((error) => {
+				console.error('Analytics load failed.', error);
+			});
+	}
+})();
 
 waitDomReady().then(() => {
 	/**
