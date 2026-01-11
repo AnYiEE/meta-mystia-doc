@@ -1,4 +1,40 @@
-document.addEventListener('DOMContentLoaded', () => {
+// @ts-check
+/// <reference types="./book.d.ts" />
+
+function waitDomReady() {
+	const checkReadyState = () => {
+		/** @type {DocumentReadyState[]} */
+		const READY_STATE = ['complete', 'interactive'];
+		return READY_STATE.includes(document.readyState);
+	};
+
+	return /** @type {Promise<void>} */ (
+		new Promise((resolve) => {
+			if (checkReadyState()) {
+				resolve();
+			}
+
+			const EVENT_TYPE = 'readystatechange';
+
+			const handleReadystatechange = () => {
+				if (checkReadyState()) {
+					document.removeEventListener(
+						EVENT_TYPE,
+						handleReadystatechange
+					);
+					resolve();
+				}
+			};
+
+			document.addEventListener(EVENT_TYPE, handleReadystatechange);
+		})
+	);
+}
+
+waitDomReady().then(() => {
+	/**
+	 * @description Open external links in a new tab
+	 */
 	document.querySelectorAll('#mdbook-content a')?.forEach((a) => {
 		const href = a.getAttribute('href');
 		if (!href) {
@@ -17,8 +53,15 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	});
 
+	/**
+	 * @description Enable Fancybox for images that are the only child of a paragraph
+	 */
 	document.querySelectorAll('p > img:only-child')?.forEach((img) => {
-		if (img.closest('a')) {
+		if (
+			!(img instanceof HTMLImageElement) ||
+			img.parentNode === null ||
+			img.closest('a')
+		) {
 			return;
 		}
 
@@ -30,5 +73,27 @@ document.addEventListener('DOMContentLoaded', () => {
 		link.appendChild(img);
 	});
 
-	Fancybox.bind('[data-fancybox="images"]', { theme: 'auto' });
+	const bindFancybox = () => {
+		if (Fancybox !== undefined) {
+			Fancybox.bind('[data-fancybox="images"]', { theme: 'auto' });
+			return true;
+		}
+	};
+	(() => {
+		if (bindFancybox()) {
+			return;
+		}
+		let fancyboxInitCount = 0;
+		const fancyboxInterval = setInterval(() => {
+			if (Fancybox === undefined) {
+				fancyboxInitCount += 1;
+				if (fancyboxInitCount >= 50) {
+					clearInterval(fancyboxInterval);
+				}
+			} else {
+				Fancybox.bind('[data-fancybox="images"]', { theme: 'auto' });
+				clearInterval(fancyboxInterval);
+			}
+		}, 50);
+	})();
 });
