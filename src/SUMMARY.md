@@ -14,6 +14,7 @@
 # 开发者指南
 
 - [开发入门](./developer_guide/getting_started.md)
+- [HelloWorld其一](./developer_guide/hello_world_1.md)
 
 ---
 
