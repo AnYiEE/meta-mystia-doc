@@ -18,7 +18,7 @@
 
     解压完成后，目录结构应大致如下：
 
-    ```tree
+    ```
     Touhou Mystia Izakaya
     ├─BepInEx
     ├─dotnet
