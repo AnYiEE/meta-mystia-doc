@@ -1,6 +1,6 @@
 # Hello World 其一
 
-从零基础阅读MetaMystia项目代码并尝试贡献是有一定难度的，中文互联网对于Unity il2cpp游戏的BepInEx Mod开发相关资料也较为匮乏。从本节开始，我们将由浅入深，结合实战，带领读者一步步尝试体验il2cpp的Mod开发。
+从零基础阅读MetaMystia项目代码并尝试贡献是有一定难度的，中文互联网对于Unity il2cpp游戏的BepInEx Mod开发相关资料也较为匮乏。从本节开始，我们将由浅入深，结合实战，带您体验开发Unity il2cpp游戏的Mod。
 
 ## 什么是il2cpp
 
@@ -14,8 +14,6 @@ Unity游戏大致可以分为两类：使用Mono运行时的传统Unity游戏，
 这一步带来的直接后果是：
 **我们在逆向时不再面对C#或IL，而是面对高度优化过的C++机器码。**
 在Mono游戏中，类、方法、字段和函数签名都可以通过反射或反编译直接获取；而在il2cpp游戏中，这些信息已经被“编译掉”，只剩下函数地址、结构体布局和调用关系，需要通过额外的元数据和工具才能重新还原。
-
----
 
 ## 判断Mono/il2cpp
 
@@ -48,8 +46,6 @@ Unity游戏大致可以分为两类：使用Mono运行时的传统Unity游戏，
 
 目录，用于存放`global-metadata.dat`以及其他运行时数据。
 
----
-
 ## global-metadata与逆向难度的来源
 
 虽然il2cpp把C#编译成了本地代码，但Unity仍然需要在运行时保留一份类型系统和反射信息，因此这些数据被集中存放在一个名为`global-metadata.dat`的文件中。这个文件包含了类名、方法名、字段、参数类型、继承关系等关键信息，它相当于il2cpp世界里的“灵魂”。
@@ -60,11 +56,11 @@ Unity游戏大致可以分为两类：使用Mono运行时的传统Unity游戏，
 
 > [!CAUTION]
 >
-> 如果阅读下面出现的代码让你感到吃力，可以先阅读本章最后一节[小结](#小结)，了解哪些是值得关注的重点内容，而哪些可以暂时跳过。
+> 如果阅读下面出现的代码让您感到吃力，可以先阅读本章最后一节[小结](#小结)，了解哪些是值得关注的重点内容，而哪些可以暂时跳过。
 
 确保已经按照[开发入门](../getting_started.md)完成了BepInEx的安装，并至少完整启动过一次游戏。
 
-以Visual Studio为例，创建一个新的「类库」项目，命名为`HelloWorld`
+以Visual Studio为例，创建一个新的“类库“项目，命名为`HelloWorld`
 
 ![image-20260110235827527](./hello_world_1.assets/image-20260110235827527.png)
 
@@ -94,13 +90,13 @@ Unity游戏大致可以分为两类：使用Mono运行时的传统Unity游戏，
 
 ![image-20260111002504985](./hello_world_1.assets/image-20260111002504985.png)
 
-修改输出路径直接到`BepInEx`的`plugins`文件夹下
+修改输出路径到`BepInEx`的`plugins`文件夹下
 
 ![image-20260111003000981](./hello_world_1.assets/image-20260111003000981.png)
 
-为`Class1.cs`编写代码
+在`Class1.cs`中编写代码
 
-```c#
+```csharp
 using BepInEx;
 using BepInEx.Logging;
 using BepInEx.Unity.IL2CPP;
@@ -117,18 +113,15 @@ public class Plugin : BasePlugin
         Log.LogWarning($"Plugin HelloWorld is loaded!");
     }
 }
-
 ```
 
-使用`生成/生成解决方案`来构建mod dll
+点击**生成**中的**生成解决方案**来构建Mod dll
 
 ![image-20260111003245758](./hello_world_1.assets/image-20260111003245758.png)
 
-启动游戏便可在控制台中观察到
+确定解决方案生成成功，启动游戏，即可看到控制台的输出
 
 ![image-20260111003428455](./hello_world_1.assets/image-20260111003428455.png)
-
-## Press to HelloWorld
 
 添加新的引用并设定禁止复制本地
 
@@ -141,10 +134,9 @@ public class Plugin : BasePlugin
 ./BepInEx/interop/UnityEngine.UI.dll
 ```
 
-编写代码
+重命名`Class1.cs`至`Plugin.cs`，编写代码
 
-```C#
-// Plugin,cs (原 Class1.cs)
+```csharp
 using BepInEx;
 using BepInEx.Unity.IL2CPP;
 using HarmonyLib;
@@ -153,7 +145,7 @@ using UnityEngine.UI;
 
 namespace HelloWorld;
 
-[BepInPlugin("HelloWorld", "HelloWorld", "0.2.0")]
+[BepInPlugin("HelloWorld", "HelloWorld", "0.0.0")]
 public class Plugin : BasePlugin
 {
     public static Plugin Instance;
@@ -165,7 +157,7 @@ public class Plugin : BasePlugin
 
     public override void Load()
     {
-        Log.LogInfo($"Plugin HelloWorld-v0.2.0 is loaded!"); // Mod 加载时会打印该信息
+        Log.LogInfo($"Plugin HelloWorld-v0.0.0 is loaded!"); // Mod 加载时会打印该信息
 
         try
         {
@@ -215,11 +207,11 @@ public class Plugin : BasePlugin
         }
     }
 }
-
 ```
 
-```C#
-// PluginManager.cs
+新建`PluginManager.cs`，编写代码
+
+```csharp
 using BepInEx.Logging;
 using Il2CppInterop.Runtime;
 using UnityEngine;
@@ -254,36 +246,35 @@ public class PluginManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F1)) // 按下 F1 键时
         {
-            Log.Warning("HelloWorld from my first il2cpp mod!"); // 在控制台打印一行日志
+            Log.Warning("HelloWorld from my first il2cpp Mod!"); // 在控制台打印一行日志
         }
     }
 }
-
 ```
 
 ![image-20260111125858173](./hello_world_1.assets/image-20260111125858173.png)
 
-确定解决方案生成成功，启动游戏，按下 F1 即可看到控制台的输出
+确定解决方案生成成功，启动游戏，按下<kbd>F1</kbd>，即可看到控制台的输出
 
 ![image-20260111130151837](./hello_world_1.assets/image-20260111130151837.png)
 
-到这里为止，我们已经成功完成了一个最基础的 il2cpp Mod：
+到这里为止，我们已经成功完成了一个最基础的il2cpp Mod：
 
-它可以被 BepInEx 加载、可以在 Unity 生命周期中运行，并且能够通过按键触发自己的逻辑。这一步的意义，并不在于「打印了一行 HelloWorld」，而在于我们已经建立起了一个可以在 il2cpp 游戏中稳定执行自定义 C# 代码的注入点。
+它可以被BepInEx加载、可以在Unity生命周期中运行，并且能够通过按键触发自己的逻辑。这一步的意义，并不在于“打印了一行 HelloWorld“，而在于我们已经建立起了一个可以在il2cpp游戏中稳定执行自定义C#代码的注入点。
 
-然而，这个 Mod 目前仍然是“自说自话”的：
-它没有读取游戏状态，也没有修改任何游戏行为。要让它真正成为一个“游戏 Mod”，我们还需要知道——游戏的逻辑在哪里，函数在哪里，数据在哪里。
+然而，这个Mod目前仍然是“自说自话”的：
+它没有读取游戏状态，也没有修改任何游戏行为。要让它真正成为一个“游戏Mod”，我们还需要知道——游戏的逻辑在哪里，函数在哪里，数据在哪里。
 
 ## 小结
 
-本节重点更在于认识il2cpp，学会创建一个最基础的il2cpp mod，包括
+本节重点更在于认识il2cpp，学会创建一个最基础的il2cpp Mod，包括
 
 1. 创建类库项目
 2. 添加必要引用
 3. 粘贴模板代码
-4. 构建并运行mod
+4. 构建并运行Mod
 
-对于逆向和mod开发的初学者来说，直接理解全部代码是没有意义的，想象一个C语言初学者，在第一次接触到下面的代码
+对于逆向和Mod开发的初学者来说，直接理解全部代码是没有意义的，想象一个C语言初学者，在第一次接触到下面的代码
 
 ```c
 #include <stdio.h>
@@ -295,8 +286,6 @@ int main(int argc, char** argv) {
 
 他并不需要理解`#include`、`int main`、`argc/argv`等所有细节，只需要知道：
 
-> 我在这个「模板代码」中的「恰当位置」写`printf`就能让我的程序说任意我想说的话
+> 我在这个“模板代码“中的“恰当位置“写`printf`就能让我的程序说任意我想说的话。
 
-我们更推荐初学者多实践、多尝试，先把「能跑起来」这件事做好，再逐步深入理解每一行代码的细节含义。在感到基础知识不足时，结合问题去查阅相关资料，而后应用到新的尝试中去。
-
-> _认识从实践始，经过实践得到了理论的认识，还须再回到实践去。_
+我们更推荐初学者多实践、多尝试，先把“能跑起来“这件事做好，再逐步深入理解每一行代码的细节含义。在感到基础知识不足时，结合问题去查阅相关资料，而后应用到新的尝试中去。
