@@ -28,6 +28,10 @@ p > a:only-child > img:only-child {
 	margin: 0 auto;
 }
 
+.content img {
+	max-height: 70vh;
+}
+
 .menu-title {
 	font-weight: 400;
 }
