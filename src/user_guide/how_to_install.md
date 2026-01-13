@@ -59,3 +59,13 @@
    当游戏左下角出现白色提示文字时，表示Mod已成功加载：
 
     ![成功安装后的输出](./how_to_install.assets/image-20251231115308622.png)
+
+## 配置资源扩展ResourceEx（可选）
+
+0. 备份游戏存档，以防止意外情况发生。
+1. 在游戏根目录创建一个名为`ResourceEx`的文件夹
+2. 从以下任意地址，下载资源包如`ResourceExample.zip`，**直接**放到`ResourceEx`文件夹**无需解压**
+    - GitHub：
+      [https://github.com/MetaMikuAI/MetaMystia/releases](https://github.com/MetaMikuAI/MetaMystia/releases)
+    - 本站服务器：
+      [https://url.izakaya.cc/getMetaMystia](https://url.izakaya.cc/getMetaMystia)
