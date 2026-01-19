@@ -47,7 +47,7 @@
 
         {{#if mathjax_support}}
         <!-- MathJax -->
-        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
         {{/if}}
 
         <!-- Provide site root and default themes to javascript -->
@@ -333,7 +333,7 @@
         {{#if mathjax_support}}
         <script>
         window.addEventListener('load', function() {
-            MathJax.Hub.Register.StartupHook('End', function() {
+            MathJax.whenReady(function() {
                 window.setTimeout(window.print, 100);
             });
         });
