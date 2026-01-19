@@ -31,6 +31,11 @@
 		"noopener",
 		"noreferrer",
 		"quan",
-		"touhou"
+		"scrollbox",
+		"searchbar",
+		"searchindex",
+		"searchresults",
+		"touhou",
+		"unhide"
 	]
 }
