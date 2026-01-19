@@ -65,14 +65,14 @@
     <body>
     <div id="mdbook-help-container">
         <div id="mdbook-help-popup">
-            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <h2 class="mdbook-help-title">键盘快捷键</h2>
             <div>
-                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>按<kbd>←</kbd>或<kbd>→</kbd>在章节间导航</p>
                 {{#if search_enabled}}
-                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>按<kbd>S</kbd>或<kbd>/</kbd>搜索</p>
                 {{/if}}
-                <p>Press <kbd>?</kbd> to show this help</p>
-                <p>Press <kbd>Esc</kbd> to hide this help</p>
+                <p>按<kbd>?</kbd>显示此帮助</p>
+                <p>按<kbd>ESC</kbd>隐藏此帮助</p>
             </div>
         </div>
     </div>
@@ -143,14 +143,14 @@
                 <div id="mdbook-menu-bar-hover-placeholder"></div>
                 <div id="mdbook-menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="展开/收起目录" aria-label="展开/收起目录" aria-controls="mdbook-sidebar">
                             {{fa "solid" "bars"}}
                         </label>
-                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="切换主题" aria-label="切换主题" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
                             {{fa "solid" "paintbrush"}}
                         </button>
-                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="主题" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">默认</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
@@ -158,7 +158,7 @@
                             <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
                         </ul>
                         {{#if search_enabled}}
-                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="搜索（按 / 即可打开搜索框）" aria-label="切换搜索栏" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
                             {{fa "solid" "magnifying-glass"}}
                         </button>
                         {{/if}}
@@ -168,17 +168,17 @@
 
                     <div class="right-buttons">
                         {{#if print_enable}}
-                        <a href="{{ path_to_root }}print.html" title="Print this book" aria-label="Print this book">
+                        <a href="{{ path_to_root }}print.html" title="打印本页" aria-label="打印本页">
                             {{fa "solid" "print" "print-button"}}
                         </a>
                         {{/if}}
                         {{#if git_repository_url}}
-                        <a href="{{git_repository_url}}" title="Git repository" aria-label="Git repository">
+                        <a href="{{git_repository_url}}" title="GitHub仓库" aria-label="GitHub仓库" rel="noopener noreferrer">
                             {{fa git_repository_icon_class git_repository_icon}}
                         </a>
                         {{/if}}
                         {{#if git_repository_edit_url}}
-                        <a href="{{git_repository_edit_url}}" title="Suggest an edit" aria-label="Suggest an edit" rel="edit">
+                        <a href="{{git_repository_edit_url}}" title="编辑本页" aria-label="编辑本页" rel="edit noopener noreferrer">
                             {{fa "solid" "pencil" "git-edit-button"}}
                         </a>
                         {{/if}}
@@ -190,7 +190,7 @@
                 <div id="mdbook-search-wrapper" class="hidden">
                     <form id="mdbook-searchbar-outer" class="searchbar-outer">
                         <div class="search-wrapper">
-                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="搜索文档..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
                             <div class="spinner-wrapper">
                                 {{fa "solid" "spinner" "fa-spin"}}
                             </div>
@@ -221,7 +221,7 @@
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         {{#if previous}}
-                            <a rel="prev" href="{{ path_to_root }}{{previous.link}}" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="{{ path_to_root }}{{previous.link}}" class="mobile-nav-chapters previous" title="上一章节" aria-label="上一章节" aria-keyshortcuts="Left">
                                 {{#if (eq ../text_direction "rtl")}}
                                 {{fa "solid" "angle-right"}}
                                 {{else}}
@@ -231,7 +231,7 @@
                         {{/if}}
 
                         {{#if next}}
-                            <a rel="next prefetch" href="{{ path_to_root }}{{next.link}}" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="{{ path_to_root }}{{next.link}}" class="mobile-nav-chapters next" title="下一章节" aria-label="下一章节" aria-keyshortcuts="Right">
                                 {{#if (eq ../text_direction "rtl")}}
                                 {{fa "solid" "angle-left"}}
                                 {{else}}
@@ -247,7 +247,7 @@
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 {{#if previous}}
-                    <a rel="prev" href="{{ path_to_root }}{{previous.link}}" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="{{ path_to_root }}{{previous.link}}" class="nav-chapters previous" title="上一章节" aria-label="上一章节" aria-keyshortcuts="Left">
                         {{#if (eq ../text_direction "rtl")}}
                         {{fa "solid" "angle-right"}}
                         {{else}}
@@ -257,7 +257,7 @@
                 {{/if}}
 
                 {{#if next}}
-                    <a rel="next prefetch" href="{{ path_to_root }}{{next.link}}" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="{{ path_to_root }}{{next.link}}" class="nav-chapters next" title="下一章节" aria-label="下一章节" aria-keyshortcuts="Right">
                         {{#if (eq text_direction "rtl")}}
                         {{fa "solid" "angle-left"}}
                         {{else}}
