@@ -22,6 +22,11 @@ body {
 	text-spacing-trim: normal;
 }
 
+kbd {
+	font-family: var(--mono-font);
+	margin: 0 0.25em;
+}
+
 p > img:only-child,
 p > a:only-child > img:only-child {
 	display: block;
