@@ -202,13 +202,16 @@
 
 			const response = await fetch(
 				'https://api.izakaya.cc/version/meta-mystia'
-			);
-			if (!response.ok) {
+			).catch(() => null);
+			if (!response?.ok) {
 				return;
 			}
 
 			/** @type {{dll: string | null; zip: string | null}} */
-			const data = await response.json();
+			const data = await response.json().catch(() => null);
+			if (data === null) {
+				return;
+			}
 
 			if (data.dll !== null) {
 				dllElements.forEach((el) => {
