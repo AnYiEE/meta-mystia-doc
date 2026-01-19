@@ -31,7 +31,7 @@
 
 7. 使用任意支持.NET Solution的IDE（如Visual Studio）打开仓库根目录下的`MetaMystia.sln`。
 
-8. 编译项目，确认能够成功生成`MetaMystia.dll`。
+8. 编译项目，确认能够成功构建。
 
 ## 安装工具
 

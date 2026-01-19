@@ -14,7 +14,7 @@
 
 只要记住这一点就够了：
 
-> 先装BepInEx，再把MetaMystia放进指定文件夹里。
+> 先装BepInEx，再把MetaMystia Mod的相关文件放进指定文件夹里。
 
 ## 一、下载安装BepInEx
 
@@ -92,7 +92,7 @@
 
 ## 三、如何更新Mod {#update_mod}
 
-如果您已经安装过MetaMystia Mod的`.dll`与`.zip`文件，需要从旧版本升级到最新版本，您可按以下步骤操作：
+如果您已经安装过MetaMystia的`.dll`与`.zip`文件，需要从旧版本升级到最新版本，您可按以下步骤操作：
 
 1. 按照[下载安装Mod](#install_mod)的步骤下载最新版本的文件到指定目录下。
 2. 删除旧版本的文件（**不包括**BepInEx相关文件）。

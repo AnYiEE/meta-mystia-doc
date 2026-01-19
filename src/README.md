@@ -1,6 +1,6 @@
 # 项目介绍
 
-[**MetaMystia**](https://github.com/MetaMikuAI/MetaMystia)是一个为游戏《[东方夜雀食堂](https://store.steampowered.com/app/1584090/)》开发的**联机Mod**（玩家自制扩展）。
+[**MetaMystia**](https://github.com/MetaMikuAI/MetaMystia)是一个为游戏《[东方夜雀食堂](https://store.steampowered.com/app/1584090/)》开发的**Mod**（玩家自制扩展）。
 
 如果您不熟悉“Mod”这个词，可以简单理解为：
 
