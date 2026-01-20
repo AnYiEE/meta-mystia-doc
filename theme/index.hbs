@@ -93,6 +93,49 @@
             } catch (e) { }
         </script>
 
+        <script>
+            (() => {
+                const themeColors = {
+                    'light': '#ffffff',
+                    'rust': '#3b2e2a',
+                    'coal': '#292c2f',
+                    'navy': '#282d3f',
+                    'ayu': '#14191f'
+                };
+                const getOrCreateThemeColorMeta = () => {
+                    let meta = document.querySelector('meta[name="theme-color"]');
+                    if (meta === null) {
+                        meta = document.createElement('meta');
+                        meta.name = 'theme-color';
+                        document.head.appendChild(meta);
+                    }
+                    return meta;
+                };
+                const updateThemeColor = () => {
+                    const classList = document.documentElement.classList;
+                    for (const theme in themeColors) {
+                        if (classList.contains(theme)) {
+                            const meta = getOrCreateThemeColorMeta();
+                            meta.content = themeColors[theme];
+                            break;
+                        }
+                    }
+                };
+                const observer = new MutationObserver((mutations) => {
+                    mutations.forEach((mutation) => {
+                        if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                            updateThemeColor();
+                        }
+                    });
+                });
+                observer.observe(document.documentElement, {
+                    attributes: true,
+                    attributeFilter: ['class']
+                });
+                updateThemeColor();
+            })();
+        </script>
+
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script>
             const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
