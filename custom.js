@@ -108,6 +108,9 @@
 			setScriptUrlTag(ANALYTICS_SCRIPT_URL, 'async', true)
 				.then(() => {
 					push(['trackPageView']);
+					setTimeout(() => {
+						push(['ping']);
+					}, 30 * 1000);
 					console.info('Analytics load succeeded.');
 				})
 				.catch((error) => {
