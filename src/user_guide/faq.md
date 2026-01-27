@@ -18,6 +18,12 @@
 
 ### 如何卸载MetaMystia？
 
+#### 一键卸载
+
+我们提供了便捷管理 MetaMystia Mod 的工具，您可以阅读[下载安装Mod](./how_to_install.md#onclick_install)获取更多信息。
+
+#### 手动卸载
+
 如果您**只希望**移除MetaMystia相关文件，删除`游戏根目录/BepInEx/plugins/MetaMystia-v\*.dll`文件与`游戏根目录/ResourceEx`文件夹即可。
 
 如果您还希望移除和Mod有关的所有文件，换言之，将游戏还原为不支持Mod的状态，您**还需要**删除以下文件和文件夹（如有）：

@@ -2,8 +2,6 @@
 
 本文将引导您完成**BepInEx**及**MetaMystia Mod**的安装流程。
 
-如果您没有接触过“Mod”或电脑文件操作，也不用担心——只要一步一步照着做，就可以完成安装。
-
 ## 安装前你需要知道的几件事
 
 在开始之前，先简单说明几个名词：
@@ -12,11 +10,28 @@
 - **BepInEx**：一个“Mod加载器”，可以理解为“专门帮游戏启动Mod的小程序”
 - **游戏根目录**：游戏安装的文件夹，也就是能看到`Touhou Mystia Izakaya.exe`这个文件的地方
 
+## 一键安装 {#onclick_install}
+
+我们提供了一键安装、升级、卸载 MetaMystia Mod 的工具，您可酌情使用。
+
+1. 从以下任一地址下载最新的**meta-mystia-manager.exe**（注意：文件名也可能为**MetaMystia Mod管理器**）：
+    - GitHub：
+      [https://github.com/AnYiEE/meta-mystia-manager/releases](https://github.com/AnYiEE/meta-mystia-manager/releases)
+    - 本站服务器：
+      [https://url.izakaya.cc/getMetaMystia](https://url.izakaya.cc/getMetaMystia)
+
+2. 下载完成后，将文件放入**游戏根目录**
+3. 双击运行并按提示选择您需要的功能
+
+## 手动安装
+
+如果您没有接触过“Mod”或电脑文件操作，也不用担心——只要一步一步照着做，就可以完成安装。
+
 只要记住这一点就够了：
 
 > 先装BepInEx，再把MetaMystia Mod的相关文件放进指定文件夹里。
 
-## 一、下载安装BepInEx
+### 一、下载安装BepInEx
 
 1. 打开**BepInEx BE**的官方构建页面：
    [https://builds.bepinex.dev/projects/bepinex_be](https://builds.bepinex.dev/projects/bepinex_be)
@@ -57,7 +72,7 @@
    如果游戏启动时弹出一个**黑色控制台窗口**，说明BepInEx已成功安装。
    首次启动时加载时间可能稍长，请耐心等待。
 
-## 二、下载安装Mod {#install_mod}
+### 二、下载安装Mod {#install_mod}
 
 1. 从以下任一地址下载<span class="version-dll">最新的**MetaMystia-v\*.dll**</span>（推荐通过GitHub）：
     - GitHub：
@@ -90,7 +105,13 @@
 
     ![成功安装后的输出](./how_to_install.assets/image-20251231115308622.png)
 
-## 三、如何更新Mod {#update_mod}
+### 三、如何更新Mod {#update_mod}
+
+#### 一键升级
+
+我们提供了便捷管理 MetaMystia Mod 的工具，您可以阅读[下载安装Mod](#onclick_install)获取更多信息。
+
+#### 手动升级
 
 如果您已经安装过MetaMystia的`.dll`与`.zip`文件，需要从旧版本升级到最新版本，您可按以下步骤操作：
 
