@@ -14,7 +14,7 @@
 
 我们提供了一键安装、升级、卸载 MetaMystia Mod 的工具，您可酌情使用。
 
-1. 从以下任一地址下载最新的**meta-mystia-manager.exe**（注意：文件名也可能为**MetaMystia Mod管理器**）：
+1. 从以下任一地址下载<span class="version-manager">最新的**meta-mystia-manager-v\*.exe**</span>（注意：文件名也可能为**MetaMystia Mod管理器.exe**）：
     - GitHub：
       [https://github.com/AnYiEE/meta-mystia-manager/releases](https://github.com/AnYiEE/meta-mystia-manager/releases)
     - 本站服务器：

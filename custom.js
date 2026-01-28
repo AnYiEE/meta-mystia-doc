@@ -197,9 +197,17 @@
 		 * @description Fetch and display the latest version information
 		 */
 		(async () => {
+			const managerElements = document.querySelectorAll(
+				'span.version-manager'
+			);
 			const dllElements = document.querySelectorAll('span.version-dll');
 			const zipElements = document.querySelectorAll('span.version-zip');
-			if (dllElements.length === 0 && zipElements.length === 0) {
+
+			if (
+				managerElements.length === 0 &&
+				dllElements.length === 0 &&
+				zipElements.length === 0
+			) {
 				return;
 			}
 
@@ -210,12 +218,19 @@
 				return;
 			}
 
-			/** @type {{dll: string | null; zip: string | null}} */
+			/** @type {{manager: string | null; dll: string | null; zip: string | null}} */
 			const data = await response.json().catch(() => null);
 			if (data === null) {
 				return;
 			}
 
+			if (data.manager !== null) {
+				managerElements.forEach((el) => {
+					el.innerHTML = el.innerHTML
+						.replace('*', data.manager)
+						.replace('最新的', '');
+				});
+			}
 			if (data.dll !== null) {
 				dllElements.forEach((el) => {
 					el.innerHTML = el.innerHTML
