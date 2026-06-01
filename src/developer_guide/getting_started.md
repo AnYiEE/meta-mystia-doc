@@ -115,6 +115,6 @@ dnSpy插件，用于将Cpp2IL的分析结果整合进dnSpy视图，在查看il2c
 > 动态调试时由于**ASLR**，模块的运行时基址（如`0x7FFF25021000`）会与静态分析时的地址（如`0x180001000`）不同，容易造成地址对照混乱。保留一份原始静态数据库可以避免IDA的Rebase影响静态分析。
 
 
-### 辅助 Skill
+### 辅助Skill
 
-在AI高度发展的现在，可以使用能力较强的AI Agent来辅助阅读代码。常用的AI Agent如：Claude Code, Codex, Copilot等等。除了需要配置上文所述的IDA Pro MCP以外，MetaMiku准备了一个专门的Skill [il2cpp-to-csharp-skill](https://github.com/MetaMikuAI/il2cpp-to-csharp-skill)，该Skill可以在您的模组开发中后期提供持续的代码理解和逆向辅助。安装好此 Skill 后，只需向Agent提供必要的IDA Pro MCP、`stringliteral.json`以及最主要的桩代码，即可完成几乎全部的非混淆的逆向。具体请参考该仓库。
+在AI高度发展的现在，可以使用能力较强的AI Agent来辅助阅读代码。常用的AI Agent如：Claude Code, Codex, Copilot等等。除了需要配置上文所述的IDA Pro MCP以外，MetaMiku准备了一个专门的Skill [il2cpp-to-csharp-skill](https://github.com/MetaMikuAI/il2cpp-to-csharp-skill)，该Skill可以在您的模组开发中后期提供持续的代码理解和逆向辅助。安装好此Skill后，只需向Agent提供必要的IDA Pro MCP、`stringliteral.json`以及最主要的桩代码，即可完成几乎全部的非混淆的逆向。具体请参考该仓库。
