@@ -20,6 +20,7 @@
 - [相关仓库和外链](./developer_guide/links.md)
 - [开发入门](./developer_guide/getting_started.md)
 - [HelloWorld其一](./developer_guide/hello_world_1.md)
+- [HelloWorld其二](./developer_guide/hello_world_2.md)
 
 ---
 
