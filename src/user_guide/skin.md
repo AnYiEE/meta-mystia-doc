@@ -23,3 +23,21 @@
 ![image-20260330222239839](./skin.assets/image-20260330222239839.png)
 
 皮肤系统尚在测试阶段，后续一段时间会逐步完善，敬请期待。
+
+## 目前在皮肤库内的可用皮肤
+
+可以用`/skin net`后接下面任意一个
+
+|   指令    |               皮肤效果                |
+| :-------: | :-----------------------------------: |
+| `DMShion` | ![DMShion](./skin.assets/DMShion.png) |
+| `DMJyoon` | ![DMJyoon](./skin.assets/DMJyoon.png) |
+| `DMUrumi` | ![DMUrumi](./skin.assets/DMUrumi.png) |
+|   `Box`   |     ![Box](./skin.assets/Box.png)     |
+|  `Ball`   |    ![Ball](./skin.assets/Ball.png)    |
+|   `AQ`    |      ![AQ](./skin.assets/AQ.png)      |
+|   `Bun`   |     ![Bun](./skin.assets/Bun.png)     |
+|  `Stone`  |   ![Stone](./skin.assets/Stone.png)   |
+|   `Cat`   |     ![Cat](./skin.assets/Cat.png)     |
+|   `Dog`   |     ![Dog](./skin.assets/Dog.png)     |
+| `Kedama`  |  ![Kedama](./skin.assets/Kedama.png)  |
