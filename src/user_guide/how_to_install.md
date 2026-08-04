@@ -1,19 +1,19 @@
 # 如何安装
 
-本文将引导您完成**BepInEx**及**MetaMystia Mod**的安装流程。
+本文将引导您完成BepInEx及MetaMystia的安装流程。
 
 ## 一键安装 {#onclick_install}
 
-我们提供了一键安装、升级、卸载MetaMystia Mod的工具，推荐您使用这个工具来方便地进行相关管理操作。
+我们提供了一键安装、升级、卸载MetaMystia的工具，推荐您使用这个工具来方便地进行相关管理操作。
 
 1. 从以下任一地址下载<span class="version-manager">最新的**meta-mystia-manager-v\*.exe**</span>：
     - GitHub：
-      [https://github.com/AnYiEE/meta-mystia-manager/releases](https://github.com/AnYiEE/meta-mystia-manager/releases)
+      [https://github.com/MetaMystia/meta-mystia-manager/releases](https://github.com/MetaMystia/meta-mystia-manager/releases)
     - 本站服务器：
       [https://url.izakaya.cc/getMetaMystia](https://url.izakaya.cc/getMetaMystia)
 
-2. 下载完成后双击以运行文件
-3. 根据提示选择您需要的功能
+2. 下载完成后，双击运行该文件。
+3. 根据工具中的提示，选择您需要的功能。
 
     ![MetaMystia管理工具运行截图](./how_to_install.assets/image-20260202110344.png)
 
@@ -21,7 +21,7 @@
 
 除非您有特别需要，否则推荐您使用[一键安装](#onclick_install)。
 
-### 安装前你需要知道的几件事
+### 安装前需要了解的内容
 
 在开始之前，先简单说明几个名词：
 
@@ -33,15 +33,15 @@
 
 只要记住这一点就够了：
 
-> 先装BepInEx，再把MetaMystia Mod的相关文件放进指定文件夹里。
+> 先装BepInEx，再把MetaMystia的相关文件放进指定文件夹里。
 
 ### 一、下载安装BepInEx
 
 1. 打开**BepInEx BE**的官方构建页面：
    [https://builds.bepinex.dev/projects/bepinex_be](https://builds.bepinex.dev/projects/bepinex_be)
 
-2. 在页面中选择适用于《[东方夜雀食堂](https://store.steampowered.com/app/1584090/)》的**il2cpp**版本（BepInEx Unity (IL2CPP) for Windows (x64) games）。
-   注意：本游戏使用的是**il2cpp**，请选择对应版本，否则无法正常运行。
+2. 在页面中选择适用于《[东方夜雀食堂](https://store.steampowered.com/app/1584090/)》的**IL2CPP**版本（BepInEx Unity (IL2CPP) for Windows (x64) games）。
+   注意：本游戏使用的是**IL2CPP**，请选择对应版本，否则无法正常运行。
 
 3. 对于绝大多数玩家，下载下图中标注的版本即可（图中版本号可能过时，您可下载对应的最新版）：
 
@@ -79,7 +79,7 @@
 
 1. 从以下任一地址下载<span class="version-dll">最新的**MetaMystia-v\*.dll**</span>（推荐通过GitHub）：
     - GitHub：
-      [https://github.com/MetaMikuAI/MetaMystia/releases](https://github.com/MetaMikuAI/MetaMystia/releases)
+      [https://github.com/MetaMystia/MetaMystia/releases](https://github.com/MetaMystia/MetaMystia/releases)
     - 本站服务器：
       [https://url.izakaya.cc/getMetaMystia](https://url.izakaya.cc/getMetaMystia)
 
@@ -103,24 +103,33 @@
 
     GitHub的releases中可能不是每个都会附带<span class="version-zip">**ResourceExample-v\*.zip**</span>，您可以在最近一个提供此文件的release中下载。
 
-4. 再次启动游戏。
-   当游戏左下角出现白色提示文字时，表示Mod已成功加载：
+4. 再次启动游戏。当游戏左下角出现白色MetaMystia状态文字时，表示Mod已加载：
 
     ![成功安装后的输出](./how_to_install.assets/image-20251231115308622.png)
+
+5. 如果游戏提示已自动更新`Il2CppInterop.HarmonySupport.dll`，请关闭并重新启动游戏。该补丁在下一次启动后才会完全生效。
+
+6. 安装了资源包时，可在游戏内执行以下命令确认加载结果：
+
+    ```text
+    /resourceex list
+    ```
+
+    被拒绝的资源包会同时显示原因，并记录在`BepInEx/LogOutput.log`中。
 
 ## 如何升级 {#update_mod}
 
 ### 一键升级
 
-我们提供了便捷管理MetaMystia Mod的工具，您可以阅读[下载安装Mod](#onclick_install)获取更多信息。
+MetaMystia管理工具支持一键升级。您可以阅读[下载安装Mod](#onclick_install)了解如何获取和使用该工具。
 
 ### 手动升级
 
-如果您已经安装过MetaMystia的`.dll`与`.zip`文件，需要从旧版本升级到最新版本，您可按以下步骤操作：
+如果已经安装过MetaMystia的`.dll`和`.zip`文件，可按以下步骤手动升级：
 
 1. 按照[下载安装Mod](#install_mod)的步骤下载最新版本的文件到指定目录下。
-2. 删除旧版本的文件（**不包括**BepInEx相关文件）。
-3. 再次启动游戏。
+2. 删除旧版`MetaMystia-v*.dll`，避免BepInEx同时加载多个版本。
+3. 再次启动游戏；如果出现Il2CppInterop补丁更新提示，再重启一次。
 
 > [!TIP]
-> MetaMystia正在快速迭代以修复问题、添加和完善功能，而您下载的文件并不会自动更新。如果您遇到了任何问题，您可以再次前往上述网址查看我们是否已经发布了对应的修复版本。
+> 手动安装的文件不会自动更新。遇到问题时，先确认游戏、MetaMystia和ResourceEx资源包是否为相互兼容的版本。如果您遇到了任何问题，您可以再次前往上述网址查看我们是否已经发布了对应的修复版本。

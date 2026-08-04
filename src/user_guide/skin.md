@@ -1,34 +1,46 @@
 # 皮肤系统
 
-皮肤系统允许用户自定义角色外观，允许玩家使用游戏内全部可用角色皮肤（包括ResourceEx扩展稀客和扩展服装），并且兼容联机系统，玩家在联机中可以看到其他玩家的皮肤。
+皮肤系统可以替换本地角色外观，并把选择同步给房间内其他玩家。它支持游戏原有角色和服装、DLC、ResourceEx角色和服装，以及从皮肤站下载的网络皮肤。
 
-- `/skin list`列出全部可用皮肤
-- `/skin set <id> <Default|Explicit|DLC> <index>`用以切换为指定的皮肤
-- `/skin off`关闭皮肤系统并恢复游戏默认服装
+## 游戏和ResourceEx皮肤
 
-示例：
+先执行`/skin list`查看当前环境中可用的角色ID、类型和索引，再使用：
 
+```text
+/skin set <characterId> <Default|Explicit|DLC> <skinIndex>
 ```
+
+例如：
+
+```text
 /skin set 21 Explicit 0
 ```
 
-![image-20260330221731828](./skin.assets/image-20260330221731828.png)
+![角色皮肤示例](./skin.assets/image-20260330221731828.png)
 
-如果您拥有 `DLC2`，可以使用
+拥有对应DLC时，也可以选择DLC角色：
 
-```
+```text
 /skin set 2006 Default 0
 ```
 
-![image-20260330222239839](./skin.assets/image-20260330222239839.png)
+![DLC角色皮肤示例](./skin.assets/image-20260330222239839.png)
 
-皮肤系统尚在测试阶段，后续一段时间会逐步完善，敬请期待。
+执行`/skin off`会清除手动覆盖并恢复游戏默认外观。皮肤会在联机中同步，但其他玩家必须拥有对应的游戏、DLC或ResourceEx资源，才能正确显示本地资源皮肤。
 
-## 目前在皮肤库内的可用皮肤
+## 网络皮肤
 
-可以用`/skin net`后接下面任意一个
+网络皮肤由皮肤站按名称下载：
 
-|   指令    |               皮肤效果                |
+```text
+/skin net <name>
+```
+
+下载完成前会先显示占位外观。`/skin net refresh`会清除当前皮肤缓存并重新下载，`/skin net off`关闭网络皮肤。
+
+当前文档记录的名称如下；皮肤站实际提供的内容可能随时调整。
+
+|   名称    |                 预览                  |
 | :-------: | :-----------------------------------: |
 | `DMShion` | ![DMShion](./skin.assets/DMShion.png) |
 | `DMJyoon` | ![DMJyoon](./skin.assets/DMJyoon.png) |
@@ -41,3 +53,17 @@
 |   `Cat`   |     ![Cat](./skin.assets/Cat.png)     |
 |   `Dog`   |     ![Dog](./skin.assets/Dog.png)     |
 | `Kedama`  |  ![Kedama](./skin.assets/Kedama.png)  |
+
+## 旋转覆盖
+
+部分贴图需要覆盖角色旋转行为：
+
+```text
+/skin rot on
+/skin rot off
+/skin rot clear
+```
+
+`clear`会清除手动覆盖，并立即恢复皮肤或游戏自身的旋转设置。
+
+完整命令说明参见[常用命令](./commands.md)。

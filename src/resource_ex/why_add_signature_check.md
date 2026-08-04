@@ -1,50 +1,61 @@
-# 有关ID签名校验机制的说明（资源包创作者请注意）
+# ID签名校验机制
 
-## 为什么要添加ID签名校验机制？
+ResourceEx用ID区分角色、食材、料理、食谱和酒水等资源。两个资源包复用同一ID时，游戏可能加载错误内容。受管理ID段和签名机制用于减少这类冲突。
 
-MetaMystia为保证资源包之间不发生冲突，设计了基于白名单的签名校验机制。其目的是在保持高度自由的前提下，确保每个资源包中所使用的食材ID、酒水ID、Item ID、稀客ID或其他资源的ID的全局唯一性。
+签名表示某个`label`获准使用一段ID，不代表MetaMystia对资源包内容的认可、支持或推荐。
 
-**MetaMystia不会限制任何资源包创作者的合理申请，但提供签名也并不代表对任何非法资源包的认可、支持或推荐。**
+## ID范围
 
-## ID段划分
+| 范围                       | 规则                                                 |
+| -------------------------- | ---------------------------------------------------- |
+| `-2147483648`至`8999`      | 游戏保留区，ResourceEx禁止使用                       |
+| `9000`至`1073741823`       | 受管理区，需要声明合法范围；启用校验时还需要有效签名 |
+| `1073741824`至`2147483647` | 自由区，无需签名，但冲突风险由创作者承担             |
 
-ID可用范围划分为三段：
+资源包使用受管理ID时，必须在`packInfo.idRangeStart`和`packInfo.idRangeEnd`中声明范围。起始值不能大于结束值，且所有受管理ID都必须落在声明范围内。只使用自由区ID的包不需要声明这两个字段。
 
-- `-2147483648<=?<=8999`：游戏保留区
-- `9000<=?<=1073741823`：受管理区，需要向MetaMystia申请后方可使用
-- `1073741824<=?<=2147483647`：自由区，无需申请即可使用
+## 申请ID段
 
-## 如何申请签名？
+可通过以下渠道提交资源包`label`和希望使用的连续ID段：
 
-通过[QQ群（1034953242）](https://qm.qq.com/q/s0Qp3QPtOC)、[邮箱（`MetaMiku@hotmail.com`）](mailto:MetaMiku@hotmail.com)或[MetaMystia的仓库issue](https://github.com/MetaMikuAI/MetaMystia/issues)，提交您所创作资源包的label（如ResourceExample）以及待申请的ID段（如23000~23999）即可获取签名。MetaMystia将保证该ID段不再分配给其他资源包，从而避免资源包之间的ID冲突。申请完成后，**除非扩展ID段或修改资源包label**，否则无需重复申请签名。
+- QQ群：[1034953242](https://qm.qq.com/q/s0Qp3QPtOC)
+- 邮箱：[`MetaMiku@hotmail.com`](mailto:MetaMiku@hotmail.com)
+- GitHub Issue：[MetaMystia Issues](https://github.com/MetaMystia/MetaMystia/issues)
 
-原则上每个资源包可分配的ID段是
+通常按每1000个ID分配一段：
 
 $$
-[1000n, 1000n+999], n\in\mathbb{Z}
+[1000n, 1000n+999],\quad n\in\mathbb{Z}
 $$
 
-共计**1000个ID**。对于需要更多ID的资源包，请创作者简要注明原因并申请更大的**连续的**ID段。
+需要更大范围时，请说明用途并申请连续区间。除非扩展ID段或修改`label`，已经签名的包无需因版本更新重复申请。
 
-## 如何使用申请到的签名？
+申请前请查看[MetaMystia-ResourceEx ID分配表](https://docs.qq.com/sheet/DV2NvRFVKYmJBWGVK)，避开已分配范围。示例包`ResourceExample`当前使用`9000`至`12999`，第三方资源包不可复用。
 
-在填写好资源包唯一标识符（label）和申请到的ID段后，资源包创作者只需点击“签名”按钮，粘贴申请到的签名字符串并应用签名即可完成签名的添加操作。在线编辑器会自动对其进行校验，确保资源包的签名有效。
+## 签名内容
 
-![image-20260220093232888](./why_add_signature_check.assets/image-20260220093232888.png)
+签名绑定以下UTF-8文本：
 
-![image-20260220093511274](./why_add_signature_check.assets/image-20260220093511274.png)
+```text
+label:idRangeStart-idRangeEnd
+```
 
-## 暂时没有签名或者不想申请签名怎么办？
+加载器使用内置公钥执行RSA-2048、SHA-256、PKCS#1 v1.5验证。修改`label`或ID段后，原签名会失效。
 
-资源包创作者可修改`Touhou Mystia Izakaya/BepInEx/config/MetaMystia.cfg`中的`SignatureCheck`项从而禁用签名校验，以便在获得签名前进行临时开发与调试。
+在在线编辑器中填写`label`和ID范围后，使用“签名”功能粘贴获批的签名字符串并保存。
 
-如您关闭了签名校验却仍然被提示校验失败，可能是因为资源包中部分ID不在**声明的**ID段内。
+![填写签名](./why_add_signature_check.assets/image-20260220093232888.png)
 
-如您对白名单签名机制不满意，也可使用自由区ID段。使用该区段ID的资源包不会被执行签名校验，但需自行承担ID冲突的风险。
+![签名校验结果](./why_add_signature_check.assets/image-20260220093511274.png)
 
-## 已分配或不可使用的ID段列表
+## 临时开发和自由区
 
-全部已分配或不可用的ID段已经明确列出在下表中，资源包创作者在申请签名时请务必参考该表以避免申请到已分配或不可使用的ID段。
+等待签名期间，可以在`BepInEx/config/MetaMystia.cfg`的`General`节把`SignatureCheck`设为`false`。这只适合本地开发和调试。
 
-- MetaMystia-ResourceEx ID分配表：[
-https://docs.qq.com/sheet/DV2NvRFVKYmJBWGVK](https://docs.qq.com/sheet/DV2NvRFVKYmJBWGVK)
+关闭签名验证后，以下规则仍会执行：
+
+- 禁止使用小于或等于`8999`的游戏保留ID；
+- 受管理ID必须位于资源包声明的范围内；
+- 使用受管理ID时，起止范围本身必须合法。
+
+不想申请签名时，可以使用`1073741824`以上的自由区ID。自由区不会解决不同资源包之间的冲突，发布者应自行协调。
