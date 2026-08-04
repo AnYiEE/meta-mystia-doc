@@ -1,14 +1,16 @@
 # 贡献MetaMystia文档指南
 
-本文档用于指导您如何在[**meta-mystia-doc**](https://github.com/AnYiEE/meta-mystia-doc)仓库中使用[**mdBook**](https://rust-lang.github.io/mdBook/index.html)编写和维护文档。内容包含基础流程、本地预览方式、目录结构说明以及提交规范说明，适合首次参与贡献的开发者快速上手。
+本文档用于指导您如何在[**meta-mystia-doc**](https://github.com/MetaMystia/meta-mystia-doc)仓库中使用[**mdBook**](https://rust-lang.github.io/mdBook/index.html)编写和维护文档。内容包含基础流程、本地预览方式、目录结构说明以及提交规范说明，适合首次参与贡献的开发者快速上手。
 
-## 一、仓库与工具简介
+## 一、仓库和工具简介
 
-- **仓库地址**：[https://github.com/AnYiEE/meta-mystia-doc](https://github.com/AnYiEE/meta-mystia-doc)
+- **仓库地址**：[https://github.com/MetaMystia/meta-mystia-doc](https://github.com/MetaMystia/meta-mystia-doc)
 - **文档工具**：[mdBook](https://rust-lang.github.io/mdBook/index.html)（Rust官方维护的文档生成工具）
 - **包管理器**：[pnpm](https://pnpm.io/installation)
 
 mdBook以Markdown作为写作格式，通过`SUMMARY.md`管理文档结构，适合编写结构清晰、可持续维护的技术文档。
+
+如果只修改Markdown内容，可以先克隆仓库后直接编辑。如果还要执行格式化、本地构建或实时预览，则需要提前安装Node.js、pnpm和mdBook。
 
 ## 二、基础编写流程（不需要本地实时预览）
 
@@ -17,17 +19,17 @@ mdBook以Markdown作为写作格式，通过`SUMMARY.md`管理文档结构，适
 ### 步骤1：克隆仓库
 
 ```bash
-git clone https://github.com/AnYiEE/meta-mystia-doc
+git clone https://github.com/MetaMystia/meta-mystia-doc
 cd meta-mystia-doc
 ```
 
-### 步骤 2：安装依赖（首次需要）
+### 步骤2：安装依赖（需要在本地检查时）
 
 ```bash
 pnpm i
 ```
 
-该步骤用于安装项目所需的Node.js相关依赖，只需在首次克隆后执行一次。
+该步骤用于安装项目的Node.js依赖。纯文本修改可以暂时跳过，但提交前仍建议完成本地格式化和构建检查。
 
 ### 步骤 3：新增文档文件
 
@@ -57,12 +59,12 @@ src/
 同基础流程：
 
 ```bash
-git clone https://github.com/AnYiEE/meta-mystia-doc
+git clone https://github.com/MetaMystia/meta-mystia-doc
 cd meta-mystia-doc
 pnpm i
 ```
 
-### 步骤3：安装或构建mdBook
+### 步骤3：安装mdBook
 
 请根据官方指南安装mdBook：
 [https://rust-lang.github.io/mdBook/guide/installation.html](https://rust-lang.github.io/mdBook/guide/installation.html)
@@ -104,17 +106,28 @@ pnpm serve
 
 请确保：
 
-- 路径与`src`目录中的实际文件路径一致
+- 路径和`src`目录中的实际文件路径一致
 - 文件名使用小写字母，并使用下划线（snake_case）代替空格
 
-## 五、提交代码与合并请求
+## 五、提交更改和合并请求
+
+### 提交前检查
+
+在仓库根目录执行：
+
+```bash
+pnpm format
+pnpm build
+```
+
+`pnpm format`会格式化仓库内受Prettier支持的文件；`pnpm build`会调用mdBook构建整个文档站。执行后请检查`git diff`，确认没有带入和本次修改无关的格式变化。
 
 ### 提交更改
 
-在完成文档编写后，请提交您的更改：
+检查通过后，只暂存和本次任务有关的文件，再创建提交。例如：
 
 ```bash
-git add .
+git add src/guide/getting_started.md src/SUMMARY.md
 git commit -m "docs: add getting started guide"
 ```
 
@@ -133,7 +146,7 @@ git commit -m "docs: add getting started guide"
 ## 六、补充建议
 
 - 每个Markdown文件建议只聚焦一个主题，避免内容过于臃肿
-- 中英文之间**不需要手动添加空格**。站点的CSS样式会自动处理中文与英文、数字之间的字符间距，请保持Markdown内容的自然书写即可，避免为了排版而插入多余空格
+- 中英文之间**不需要手动添加空格**。站点的CSS样式会自动处理中文和英文、数字之间的字符间距，请保持Markdown内容的自然书写即可，避免为了排版而插入多余空格
 
 如果您对mdBook的更多高级用法感兴趣，可以查阅官方指南进一步了解主题配置、插件和自定义构建流程。
 
