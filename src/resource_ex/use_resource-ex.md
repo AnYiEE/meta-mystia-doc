@@ -17,6 +17,8 @@
 
 [MetaMystia-ResourceExample](https://github.com/MetaMystia/MetaMystia-ResourceExample)是可直接安装的示例包，也可作为创作参考。
 
+[MetaMystia-ResourceExample-dlc-free](https://github.com/Galaxy-Fall/MetaMystia-ResourceExample/tree/dlc-free)是可直接安装的示例包的无dlc适配版本，无dlc及dlc不全的玩家请安装该资源包。
+
 示例包展示了角色、对话、食材、料理、食谱、酒水、任务、事件、商人和服装等配置，其中包含大妖精、小恶魔、芙兰朵露、八意永琳、神绮、秋姐妹、八云蓝、雪、舞等角色。部分角色已有羁绊流程，其余内容仍会继续补充。资源清单以示例仓库当前的`ResourceEx.json`为准。
 
 ![示例角色](./use_resource-ex.assets/531355090-29c4d18b-2201-4ca5-8e0b-149882682493.png)

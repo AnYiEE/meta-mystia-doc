@@ -91,7 +91,7 @@
 
     如果`plugins`文件夹不存在，您可以手动创建一个。
 
-3. 如果您想在游戏中加入由MetaMystia所提供的额外内容（如：新的稀客），您还需要下载<span class="version-zip">最新的**ResourceExample-v\*.zip**</span>。
+3. 如果您想在游戏中加入由MetaMystia所提供的额外内容（如：新的稀客），您还需要前往上述链接中下载<span class="version-zip">最新的**ResourceExample-v\*.zip**</span>。
 
     下载完成后，将文件放入以下目录（**无需解压**）：
 
